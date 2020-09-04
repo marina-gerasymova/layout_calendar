@@ -1,0 +1,43 @@
+.calendar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: $calendar-size;
+
+  > div {
+    width: $block-size;
+    height: $block-size;
+    margin: 0 1px 1px 0;
+    background-color: #eee;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.5s;
+  
+    &:hover {
+      transform: translateY(-20px);
+      background-color: pink;
+    }
+  }
+
+}
+
+@each $day in $days {
+  .calendar-#{$day} > div:first-child {
+    margin-left: $block-size*(index($days, $day)-1)+index($days, $day)-1;
+  }
+}
+
+@for $j from 28 through 31 {
+  @for $i from 1 through  $j {
+    .calendar-#{$j} > div:nth-child(#{$i}):before {
+      content: "#{$i}";
+    }
+  }
+  @for $k from $j+1 through 31 {
+    .calendar-#{$j} > div:nth-child(#{$k}) {
+      display: none;
+    }
+  }
+}
