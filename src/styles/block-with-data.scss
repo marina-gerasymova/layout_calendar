@@ -34,7 +34,7 @@
       content: "#{$i}";
     }
   }
-  @for $k from $j+1 through 31 {
+  @for $k from $j+1 through 32 {
     .calendar-#{$j} > div:nth-child(#{$k}) {
       display: none;
     }
